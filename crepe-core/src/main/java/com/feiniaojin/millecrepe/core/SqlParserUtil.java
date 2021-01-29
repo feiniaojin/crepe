@@ -103,38 +103,4 @@ public class SqlParserUtil {
             throw new RuntimeException(e);
         }
     }
-
-    /* *//**
-     * 从SQL中解析出prepare statement的jdbc的参数
-     *
-     * @param sql
-     * @return
-     *//*
-    public static BoundSql parseToBoundSql(String sql) {
-
-        try {
-            Select select = (Select) CCJSqlParserUtil.parse(sql);
-            SelectBody selectBody = select.getSelectBody();
-            PlainSelect plainSelect = (PlainSelect) selectBody;
-            BoundSql boundSql = new BoundSql();
-            plainSelect.getWhere().accept(new ExpressionVisitorAdapter() {
-                @Override
-                public void visit(EqualsTo expr) {
-                    super.visit(expr);
-                    String left = expr.getLeftExpression().toString();
-                    String right = expr.getRightExpression().toString();
-                    if ("?".equals(right)) {
-                        Map<Integer, String> indexNameMap = boundSql.getIndexNameMap();
-                        int count = boundSql.getCount();
-                        count++;
-                        indexNameMap.put(count, left);
-                        boundSql.setCount(count);
-                    }
-                }
-            });
-            return boundSql;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }*/
 }

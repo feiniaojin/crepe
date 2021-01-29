@@ -33,7 +33,7 @@ public class CrepeConfig {
                 .withStartIndex("0")
                 .withEndIndex("3")
                 .withPaddingZeroLeft(Boolean.TRUE)
-                .withDigit(3)
+                .withTableIndexLength(3)
                 .build();
     }
 
@@ -44,7 +44,7 @@ public class CrepeConfig {
                 .withStartIndex("0")
                 .withEndIndex("3")
                 .withPaddingZeroLeft(Boolean.TRUE)
-                .withDigit(3)
+                .withTableIndexLength(3)
                 .build();
     }
 

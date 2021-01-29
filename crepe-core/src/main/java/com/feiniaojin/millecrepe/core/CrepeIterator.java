@@ -221,17 +221,13 @@ public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
         this.t = t;
     }
 
-
     public static final class Builder<T> {
         LogicDataLayer logicDataLayer = new LogicDataLayer();
         CrepeQuery<T> crepeQuery;
         T t = null;
         private String milestoneName;
         private Object milestoneInitValue;
-        private Object currentMilestoneValue;
         private String sql;
-        private LogicDataBase currentDataBase;
-        private String currentTableIndex;
         private ObjectMapper objectMapper;
 
         private Builder() {
@@ -256,23 +252,8 @@ public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
             return this;
         }
 
-        public Builder<T> withCurrentMilestoneValue(Object currentMilestoneValue) {
-            this.currentMilestoneValue = currentMilestoneValue;
-            return this;
-        }
-
         public Builder<T> withOriginSql(String sql) {
             this.sql = sql;
-            return this;
-        }
-
-        public Builder<T> withCurrentDataBase(LogicDataBase currentDataBase) {
-            this.currentDataBase = currentDataBase;
-            return this;
-        }
-
-        public Builder<T> withCurrentTableIndex(String currentTableIndex) {
-            this.currentTableIndex = currentTableIndex;
             return this;
         }
 

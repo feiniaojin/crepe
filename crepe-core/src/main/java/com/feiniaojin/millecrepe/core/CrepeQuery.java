@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -24,11 +23,6 @@ public class CrepeQuery<T> {
      * 当前数据源
      */
     private DataSource dataSource;
-
-    /**
-     * 参数
-     */
-    private LinkedHashMap<String, Object> paramMap = new LinkedHashMap<>();
 
     private ObjectMapper objectMapper;
 
@@ -83,14 +77,6 @@ public class CrepeQuery<T> {
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-    }
-
-    public LinkedHashMap<String, Object> getParamMap() {
-        return paramMap;
-    }
-
-    public void setParamMap(LinkedHashMap<String, Object> paramMap) {
-        this.paramMap = paramMap;
     }
 
     public ObjectMapper getObjectMapper() {

@@ -37,17 +37,17 @@ public class LogicDataBase {
     /**
      * 位数
      */
-    private Integer digit;
+    private Integer tableIndexLength;
 
     public LogicDataBase(DataSource dataSource,
                          String startIndex,
                          String endIndex,
-                         Integer digit,
+                         Integer indexLength,
                          Boolean paddingZeroLeft) {
         this.dataSource = dataSource;
         this.startIndex = startIndex;
         this.endIndex = endIndex;
-        this.digit = digit;
+        this.tableIndexLength = tableIndexLength;
         this.paddingZeroLeft = paddingZeroLeft;
         initTableIndexList();
     }
@@ -59,9 +59,9 @@ public class LogicDataBase {
         int numLength;
         for (int i = start; i <= end; i++) {
             numLength = getNumLength(i);
-            if (numLength < digit && paddingZeroLeft) {
+            if (numLength < tableIndexLength && paddingZeroLeft) {
                 StringBuilder stringBuilder = new StringBuilder();
-                for (int j = 0; j < digit - numLength; j++) {
+                for (int j = 0; j < tableIndexLength - numLength; j++) {
                     stringBuilder.append(0);
                 }
                 stringBuilder.append(i);
@@ -99,7 +99,7 @@ public class LogicDataBase {
         private String startIndex;
         private String endIndex;
         private Boolean paddingZeroLeft;
-        private Integer digit;
+        private Integer tableIndexLength;
 
         private Builder() {
         }
@@ -133,13 +133,13 @@ public class LogicDataBase {
             return this;
         }
 
-        public Builder withDigit(Integer digit) {
-            this.digit = digit;
+        public Builder withTableIndexLength(Integer tableIndexLength) {
+            this.tableIndexLength = tableIndexLength;
             return this;
         }
 
         public LogicDataBase build() {
-            return new LogicDataBase(dataSource, startIndex, endIndex, digit, paddingZeroLeft);
+            return new LogicDataBase(dataSource, startIndex, endIndex, tableIndexLength, paddingZeroLeft);
         }
     }
 }
