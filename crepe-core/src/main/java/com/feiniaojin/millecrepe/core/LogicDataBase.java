@@ -42,7 +42,7 @@ public class LogicDataBase {
     public LogicDataBase(DataSource dataSource,
                          String startIndex,
                          String endIndex,
-                         Integer indexLength,
+                         Integer tableIndexLength,
                          Boolean paddingZeroLeft) {
         this.dataSource = dataSource;
         this.startIndex = startIndex;

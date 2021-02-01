@@ -60,7 +60,7 @@ public class CrepeConfig {
         return Crepe.Builder.aCrepe().withLogicDataLayer(logicDataLayer())
                 .withMilestoneName("id")
                 .withMilestoneInitValue("0")
-                .withOriginSql("select * from t_item_ limit 2")
+                .withOriginSql("select * from t_item_ limit 1000")
                 .withObjectMapper(new ItemObjectMapper())
                 .build();
     }

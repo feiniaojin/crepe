@@ -84,7 +84,7 @@ public class TestController {
         List<Object> list = new ArrayList<>();
         for (List<Item> tempList : crepe.openBatch()) {
             logger.debug("返回的tempList=" + tempList);
-            list.add(list.addAll(tempList));
+            list.add(tempList);
         }
         return list;
     }
