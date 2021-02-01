@@ -103,4 +103,19 @@ public class SqlParserUtil {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * 检查是否是select语句
+     *
+     * @param sql
+     * @return
+     */
+    public static boolean isSelect(String sql) {
+        try {
+            Statement stmt = CCJSqlParserUtil.parse(sql);
+            return stmt instanceof Select;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

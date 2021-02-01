@@ -81,6 +81,13 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
         crepeQuery = new CrepeQuery<>();
         crepeQuery.setDataSource(currentDataBase.getDataSource());
         crepeQuery.setObjectMapper(objectMapper);
+        checkSelect(originSql);
+    }
+
+    private void checkSelect(String originSql) {
+        if (!SqlParserUtil.isSelect(originSql)) {
+            throw new RuntimeException("Not a select SQL");
+        }
     }
 
     /**
