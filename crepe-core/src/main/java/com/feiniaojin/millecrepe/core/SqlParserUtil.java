@@ -91,6 +91,7 @@ public class SqlParserUtil {
                 //添加新的列
                 StringBuilder buffer = expressionVisitor.getBuffer();
                 buffer.append(" AND ").append(milestoneName).append(" > ").append("?");
+                selectBody.setWhere(CCJSqlParserUtil.parseCondExpression(buffer.toString()));
             } else {
                 selectBody.setWhere(CCJSqlParserUtil.parseCondExpression(milestoneName + " > " + "?"));
             }

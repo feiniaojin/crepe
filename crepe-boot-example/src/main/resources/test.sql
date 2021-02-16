@@ -1,0 +1,1 @@
+SELECT id, pin, certNo, eduLevel, entranceYear, bizStatus, dataStatus, dataSource FROM campus_user_info_ WHERE dataStatus = 1 AND createTime <= '2021-02-16 19:33:17' AND dataSource IN ('chsi', 'degrade') ORDER BY id ASC LIMIT 1000

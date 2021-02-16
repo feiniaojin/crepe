@@ -96,7 +96,7 @@ public class TestController {
                 .withLogicDataLayer(logicDataLayer)
                 .withMilestoneName("id")
                 .withMilestoneInitValue(milestone)
-                .withOriginSql("select * from t_item_ limit 3")
+                .withOriginSql("select * from t_item_ where item_count=3 limit 3")
                 .withObjectMapper(new ItemObjectMapper())
                 .build();
 
