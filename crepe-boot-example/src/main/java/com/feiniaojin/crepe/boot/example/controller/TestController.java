@@ -1,8 +1,10 @@
 package com.feiniaojin.crepe.boot.example.controller;
 
 import com.feiniaojin.crepe.boot.example.entity.Item;
+import com.feiniaojin.crepe.boot.example.entity.ItemObjectMapper;
 import com.feiniaojin.millecrepe.core.Crepe;
 import com.feiniaojin.millecrepe.core.CrepeBatchIterator;
+import com.feiniaojin.millecrepe.core.LogicDataBase;
 import com.feiniaojin.millecrepe.core.LogicDataLayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +38,9 @@ public class TestController {
 
     @Resource
     private Crepe<Item> crepe;
+
+    @Resource
+    private LogicDataLayer logicDataLayer;
 
     @GetMapping("/test0")
     private Object get0() {
@@ -72,7 +77,7 @@ public class TestController {
     }
 
     @GetMapping("/test3")
-    private Object get3() {
+    private Object test3() {
         List<Object> list = new ArrayList<>();
         for (Object object : crepe.open()) {
             logger.debug("返回的item=" + object);
@@ -81,15 +86,37 @@ public class TestController {
         return list;
     }
 
-    @GetMapping("/test4")
-    private Object get4() {
-        List<Object> list = new ArrayList<>();
-        CrepeBatchIterator<Item> batchIterator = crepe.openBatch();
+    @Resource(name = "logicDataBaseDb1")
+    private LogicDataBase logicDataBaseDb1;
 
-        for (List<Item> tempList : crepe.openBatch()) {
-            logger.debug("返回的tempList=" + tempList);
-            list.add(tempList);
+    @GetMapping("/test4")
+    private Object test4(String dbIndex, String tableIndex, String milestone) {
+
+        Crepe<Object> crepeMethod = Crepe.Builder.aCrepe()
+                .withLogicDataLayer(logicDataLayer)
+                .withMilestoneName("id")
+                .withMilestoneInitValue(milestone)
+                .withOriginSql("select * from t_item_ limit 3")
+                .withObjectMapper(new ItemObjectMapper())
+                .build();
+
+        List<Object> list = new ArrayList<>();
+        CrepeBatchIterator<Object> iterator = crepeMethod.openBatch();
+
+        LogicDataBase logicDataBase = logicDataLayer.getLogicDataBases().get(Integer.valueOf(dbIndex));
+        iterator.setCurrentDataBase(logicDataBase);
+
+        String tableIndexSeq = logicDataBase.getTableIndex().get(Integer.valueOf(tableIndex));
+        iterator.setCurrentTableIndex(tableIndexSeq);
+
+        List<Object> next = null;
+        if (iterator.hasNext()) {
+            next = iterator.next();
+        } else {
+            next = new ArrayList<>();
         }
+        logger.debug("返回的tempList=" + next);
+        list.addAll(next);
 
         return list;
     }
