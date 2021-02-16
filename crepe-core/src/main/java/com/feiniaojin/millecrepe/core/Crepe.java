@@ -44,6 +44,14 @@ public class Crepe<T> {
                 .build();
     }
 
+    public LogicDataLayer getLogicDataLayer() {
+        return logicDataLayer;
+    }
+
+    public void setLogicDataLayer(LogicDataLayer logicDataLayer) {
+        this.logicDataLayer = logicDataLayer;
+    }
+
     public static final class Builder {
         LogicDataLayer logicDataLayer = new LogicDataLayer();
         private String originSql;

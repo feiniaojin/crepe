@@ -221,6 +221,14 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
         this.list = list;
     }
 
+    public Object getMilestoneInitValue() {
+        return milestoneInitValue;
+    }
+
+    public void setMilestoneInitValue(Object milestoneInitValue) {
+        this.milestoneInitValue = milestoneInitValue;
+    }
+
     public static final class Builder<T> {
         LogicDataLayer logicDataLayer;
         private Logger logger = LoggerFactory.getLogger(CrepeBatchIterator.class);

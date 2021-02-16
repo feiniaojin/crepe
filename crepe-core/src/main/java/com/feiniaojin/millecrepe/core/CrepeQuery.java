@@ -31,6 +31,7 @@ public class CrepeQuery<T> {
      */
     private String sql = null;
 
+    @SuppressWarnings("unchecked")
     public T queryOne(String sql, Object currentMilestoneValue) {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -47,6 +48,7 @@ public class CrepeQuery<T> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public List<T> queryBatch(String sql, Object currentMilestoneValue) {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
