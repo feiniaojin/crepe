@@ -222,11 +222,19 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
     }
 
     public Object getMilestoneInitValue() {
-        return milestoneInitValue;
+        return this.milestoneInitValue;
     }
 
     public void setMilestoneInitValue(Object milestoneInitValue) {
         this.milestoneInitValue = milestoneInitValue;
+    }
+
+    public Object getCurrentMilestoneValue() {
+        return currentMilestoneValue;
+    }
+
+    public void setCurrentMilestoneValue(Object currentMilestoneValue) {
+        this.currentMilestoneValue = currentMilestoneValue;
     }
 
     public static final class Builder<T> {

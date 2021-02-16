@@ -86,17 +86,14 @@ public class TestController {
         return list;
     }
 
-    @Resource(name = "logicDataBaseDb1")
-    private LogicDataBase logicDataBaseDb1;
-
     @GetMapping("/test4")
     private Object test4(String dbIndex, String tableIndex, String milestone) {
 
         Crepe<Object> crepeMethod = Crepe.Builder.aCrepe()
                 .withLogicDataLayer(logicDataLayer)
                 .withMilestoneName("id")
-                .withMilestoneInitValue(milestone)
-                .withOriginSql("select * from t_item_ where item_count=3 limit 3")
+                .withMilestoneInitValue("0")
+                .withOriginSql("select * from t_item_  limit 100")
                 .withObjectMapper(new ItemObjectMapper())
                 .build();
 
@@ -109,12 +106,17 @@ public class TestController {
         String tableIndexSeq = logicDataBase.getTableIndex().get(Integer.valueOf(tableIndex));
         iterator.setCurrentTableIndex(tableIndexSeq);
 
+        iterator.setCurrentMilestoneValue(milestone);
+
         List<Object> next = null;
         if (iterator.hasNext()) {
             next = iterator.next();
         } else {
             next = new ArrayList<>();
         }
+        logger.info("当前数据库为：" + logicDataLayer.getLogicDataBases().indexOf(iterator.getCurrentDataBase()));
+        logger.info("当前数据表为：" + iterator.getCurrentDataBase().getTableIndex().indexOf(iterator.getCurrentTableIndex()));
+        logger.info("当前里程碑为：" + iterator.getCurrentMilestoneValue());
         logger.debug("返回的tempList=" + next);
         list.addAll(next);
 
