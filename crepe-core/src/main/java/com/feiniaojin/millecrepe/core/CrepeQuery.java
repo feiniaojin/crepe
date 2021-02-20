@@ -41,7 +41,6 @@ public class CrepeQuery<T> {
             if (resultSet.next()) {
                 instance = (T) objectMapper.mapToObject(resultSet);
             }
-            logger.debug("query的instance：" + instance);
             return instance;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -58,7 +57,6 @@ public class CrepeQuery<T> {
             while (resultSet.next()) {
                 list.add((T) objectMapper.mapToObject(resultSet));
             }
-            logger.debug("query的list：" + list);
             return list;
         } catch (Exception e) {
             throw new RuntimeException(e);
