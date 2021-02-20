@@ -97,7 +97,6 @@ public class TestController {
                 .withObjectMapper(new ItemObjectMapper())
                 .build();
 
-        List<Object> list = new ArrayList<>();
         CrepeBatchIterator<Object> iterator = crepeMethod.openBatch();
 
         LogicDataBase logicDataBase = logicDataLayer.getLogicDataBases().get(Integer.valueOf(dbIndex));
@@ -118,7 +117,7 @@ public class TestController {
         logger.info("当前数据表为：" + iterator.getCurrentDataBase().getTableIndex().indexOf(iterator.getCurrentTableIndex()));
         logger.info("当前里程碑为：" + iterator.getCurrentMilestoneValue());
         logger.debug("返回的tempList=" + next);
-        list.addAll(next);
+        List<Object> list = new ArrayList<>(next);
 
         return list;
     }

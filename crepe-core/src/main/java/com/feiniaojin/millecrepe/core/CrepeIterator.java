@@ -14,7 +14,7 @@ import java.util.function.Consumer;
  */
 public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
 
-    private Logger logger = LoggerFactory.getLogger(CrepeIterator.class);
+    private final Logger logger = LoggerFactory.getLogger(CrepeIterator.class);
 
     LogicDataLayer logicDataLayer;
 
@@ -118,7 +118,8 @@ public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
             if (tableIndexOf != -1 && tableIndexOf < tableIndexes.size() - 1) {
                 currentTableIndex = tableIndexes.get(tableIndexOf + 1);
                 currentMilestoneValue = milestoneInitValue;
-                logger.debug("切换表并重置里程碑,currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                logger.debug("切换表并重置里程碑,currentDb=[{}],currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                        currentDataBase.getName(),
                         currentTableIndex,
                         currentMilestoneValue);
             } else {
@@ -130,7 +131,8 @@ public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
                     //新的表index从0开始
                     currentTableIndex = currentDataBase.getTableIndex().get(0);
                     currentMilestoneValue = milestoneInitValue;
-                    logger.debug("切换库并切换表并重置里程碑,currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                    logger.debug("切换库并切换表并重置里程碑,currentDb=[{}],currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                            currentDataBase.getName(),
                             currentTableIndex,
                             currentMilestoneValue);
                 } else {

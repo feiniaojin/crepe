@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T>> {
 
-    private Logger logger = LoggerFactory.getLogger(CrepeBatchIterator.class);
+    private final Logger logger = LoggerFactory.getLogger(CrepeBatchIterator.class);
 
     LogicDataLayer logicDataLayer;
 
@@ -67,7 +67,6 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
         this.milestoneInitValue = milestoneInitValue;
         this.currentMilestoneValue = milestoneInitValue;
         init(originSql, logicDataLayer, objectMapper, milestoneName, milestoneInitValue);
-
     }
 
     private void init(String originSql,
@@ -117,7 +116,8 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
             if (tableIndexOf != -1 && tableIndexOf < tableIndexes.size() - 1) {
                 currentTableIndex = tableIndexes.get(tableIndexOf + 1);
                 currentMilestoneValue = milestoneInitValue;
-                logger.debug("切换表并重置里程碑,currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                logger.debug("切换表并重置里程碑,currentDb=[{}],currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                        currentDataBase.getName(),
                         currentTableIndex,
                         currentMilestoneValue);
             } else {
@@ -129,7 +129,8 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
                     //新的表index从0开始
                     currentTableIndex = currentDataBase.getTableIndex().get(0);
                     currentMilestoneValue = milestoneInitValue;
-                    logger.debug("切换库并切换表并重置里程碑,currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                    logger.debug("切换库并切换表并重置里程碑,currentDb=[{}],currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                            currentDataBase.getName(),
                             currentTableIndex,
                             currentMilestoneValue);
                 } else {
@@ -239,7 +240,6 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
 
     public static final class Builder<T> {
         LogicDataLayer logicDataLayer;
-        private Logger logger = LoggerFactory.getLogger(CrepeBatchIterator.class);
         private String milestoneName;
         private Object milestoneInitValue;
         private Object currentMilestoneValue;
@@ -255,11 +255,6 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
 
         public static <T> Builder<T> aCrepeBatchIterator() {
             return new Builder<T>();
-        }
-
-        public Builder<T> withLogger(Logger logger) {
-            this.logger = logger;
-            return this;
         }
 
         public Builder<T> withLogicDataLayer(LogicDataLayer logicDataLayer) {
