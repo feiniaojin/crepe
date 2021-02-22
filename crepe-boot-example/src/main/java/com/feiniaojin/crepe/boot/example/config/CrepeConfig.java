@@ -22,9 +22,16 @@ public class CrepeConfig {
 
     @Resource(name = "dataSourceDb0")
     private DataSource dataSourceDb0;
-
     @Resource(name = "dataSourceDb1")
     private DataSource dataSourceDb1;
+    @Resource(name = "dataSourceDb2")
+    private DataSource dataSourceDb2;
+    @Resource(name = "dataSourceDb3")
+    private DataSource dataSourceDb3;
+    @Resource(name = "dataSourceDb4")
+    private DataSource dataSourceDb4;
+    @Resource(name = "dataSourceDb5")
+    private DataSource dataSourceDb5;
 
     @Bean
     public LogicDataBase logicDataBaseDb0() {
@@ -34,9 +41,9 @@ public class CrepeConfig {
                 .withEndIndex("3")
                 .withPaddingZeroLeft(Boolean.TRUE)
                 .withTableIndexLength(3)
+                .withName("db0")
                 .build();
     }
-
     @Bean
     public LogicDataBase logicDataBaseDb1() {
         return LogicDataBase.Builder.aLogicDataBase()
@@ -45,13 +52,63 @@ public class CrepeConfig {
                 .withEndIndex("3")
                 .withPaddingZeroLeft(Boolean.TRUE)
                 .withTableIndexLength(3)
+                .withName("db1")
+                .build();
+    }
+    @Bean
+    public LogicDataBase logicDataBaseDb2() {
+        return LogicDataBase.Builder.aLogicDataBase()
+                .withDataSource(dataSourceDb2)
+                .withStartIndex("0")
+                .withEndIndex("3")
+                .withPaddingZeroLeft(Boolean.TRUE)
+                .withTableIndexLength(3)
+                .withName("db2")
+                .build();
+    }
+    @Bean
+    public LogicDataBase logicDataBaseDb3() {
+        return LogicDataBase.Builder.aLogicDataBase()
+                .withDataSource(dataSourceDb3)
+                .withStartIndex("0")
+                .withEndIndex("3")
+                .withPaddingZeroLeft(Boolean.TRUE)
+                .withTableIndexLength(3)
+                .withName("db3")
+                .build();
+    }
+    @Bean
+    public LogicDataBase logicDataBaseDb4() {
+        return LogicDataBase.Builder.aLogicDataBase()
+                .withDataSource(dataSourceDb4)
+                .withStartIndex("0")
+                .withEndIndex("3")
+                .withPaddingZeroLeft(Boolean.TRUE)
+                .withTableIndexLength(3)
+                .withName("db4")
+                .build();
+    }
+    @Bean
+    public LogicDataBase logicDataBaseDb5() {
+        return LogicDataBase.Builder.aLogicDataBase()
+                .withDataSource(dataSourceDb5)
+                .withStartIndex("0")
+                .withEndIndex("3")
+                .withPaddingZeroLeft(Boolean.TRUE)
+                .withTableIndexLength(3)
+                .withName("db5")
                 .build();
     }
 
     @Bean
     public LogicDataLayer logicDataLayer() {
         return LogicDataLayer.Builder.aLogicDataLayer()
-                .withLogicDataBases(Arrays.asList(logicDataBaseDb0(), logicDataBaseDb1()))
+                .withLogicDataBases(Arrays.asList(logicDataBaseDb0(),
+                        logicDataBaseDb1(),
+                        logicDataBaseDb2(),
+                        logicDataBaseDb3(),
+                        logicDataBaseDb4(),
+                        logicDataBaseDb5()))
                 .build();
     }
 

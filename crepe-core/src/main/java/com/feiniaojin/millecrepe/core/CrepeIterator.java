@@ -129,6 +129,7 @@ public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
                 int indexOf = logicDataBases.indexOf(currentDataBase);
                 if (indexOf < logicDataBases.size() - 1) {
                     currentDataBase = logicDataBases.get(indexOf + 1);
+                    crepeQuery.setDataSource(currentDataBase.getDataSource());
                     //新的表index从0开始
                     currentTableIndex = currentDataBase.getTableIndex().get(0);
                     currentMilestoneValue = milestoneInitValue;

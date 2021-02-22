@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Primary;
 public class DataSourceConfig {
 
     @Bean(name = "dataSourceDb0")
-    @Primary
+//    @Primary
     @ConfigurationProperties(prefix = "hikari.db0")
     public HikariDataSource dataSourceDb0() {
         return new HikariDataSource();
@@ -26,4 +26,29 @@ public class DataSourceConfig {
     public HikariDataSource dataSourceDb1() {
         return new HikariDataSource();
     }
+
+    @Bean(name = "dataSourceDb2")
+    @ConfigurationProperties(prefix = "hikari.db2")
+    public HikariDataSource dataSourceDb2() {
+        return new HikariDataSource();
+    }
+
+    @Bean(name = "dataSourceDb3")
+    @ConfigurationProperties(prefix = "hikari.db3")
+    public HikariDataSource dataSourceDb3() {
+        return new HikariDataSource();
+    }
+
+    @Bean(name = "dataSourceDb4")
+    @ConfigurationProperties(prefix = "hikari.db4")
+    public HikariDataSource dataSourceDb4() {
+        return new HikariDataSource();
+    }
+
+    @Bean(name = "dataSourceDb5")
+    @ConfigurationProperties(prefix = "hikari.db5")
+    public HikariDataSource dataSourceDb5() {
+        return new HikariDataSource();
+    }
+
 }

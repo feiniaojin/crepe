@@ -80,8 +80,18 @@ public class TestController {
     private Object test3() {
         List<Object> list = new ArrayList<>();
         for (Object object : crepe.open()) {
-            logger.debug("返回的item=" + object);
+//            logger.debug("返回的item=" + object);
             list.add(object);
+        }
+        return list;
+    }
+
+    @GetMapping("/test5")
+    private Object test5() {
+        List<Object> list = new ArrayList<>();
+        for (List<Item> object : crepe.openBatch()) {
+//            logger.debug("返回的item=" + object);
+            list.addAll(object);
         }
         return list;
     }
@@ -116,7 +126,7 @@ public class TestController {
         logger.info("当前数据库为：" + logicDataLayer.getLogicDataBases().indexOf(iterator.getCurrentDataBase()));
         logger.info("当前数据表为：" + iterator.getCurrentDataBase().getTableIndex().indexOf(iterator.getCurrentTableIndex()));
         logger.info("当前里程碑为：" + iterator.getCurrentMilestoneValue());
-        logger.debug("返回的tempList=" + next);
+//        logger.debug("返回的tempList=" + next);
         List<Object> list = new ArrayList<>(next);
 
         return list;
