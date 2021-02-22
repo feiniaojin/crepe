@@ -33,6 +33,7 @@ public class CrepeQuery<T> {
 
     @SuppressWarnings("unchecked")
     public T queryOne(String sql, Object currentMilestoneValue) {
+        logger.debug("queryBatch:sql=[{}],currentMilestoneValue=[{}]", sql, currentMilestoneValue);
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, currentMilestoneValue);
@@ -49,6 +50,7 @@ public class CrepeQuery<T> {
 
     @SuppressWarnings("unchecked")
     public List<T> queryBatch(String sql, Object currentMilestoneValue) {
+        logger.debug("queryBatch:sql=[{}],currentMilestoneValue=[{}]", sql, currentMilestoneValue);
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, currentMilestoneValue);
