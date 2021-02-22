@@ -116,10 +116,11 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
             if (tableIndexOf != -1 && tableIndexOf < tableIndexes.size() - 1) {
                 currentTableIndex = tableIndexes.get(tableIndexOf + 1);
                 currentMilestoneValue = milestoneInitValue;
-                logger.debug("切换表并重置里程碑,currentDb=[{}],currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                logger.debug("切换表并重置里程碑,currentDb=[{}],currentTableIndex=[{}],currentMilestoneValue=[{}],sql=[{}]",
                         currentDataBase.getName(),
                         currentTableIndex,
-                        currentMilestoneValue);
+                        currentMilestoneValue,
+                        nextSql);
             } else {
                 //切换库，并且重置tableIndex
                 List<LogicDataBase> logicDataBases = logicDataLayer.getLogicDataBases();
@@ -129,10 +130,10 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
                     //新的表index从0开始
                     currentTableIndex = currentDataBase.getTableIndex().get(0);
                     currentMilestoneValue = milestoneInitValue;
-                    logger.debug("切换库并切换表并重置里程碑,currentDb=[{}],currentTableIndex=[{}],currentMilestoneValue=[{}]",
+                    logger.debug("切换库并切换表并重置里程碑,currentDb=[{}],currentTableIndex=[{}],currentMilestoneValue=[{}],sql=[{}]",
                             currentDataBase.getName(),
                             currentTableIndex,
-                            currentMilestoneValue);
+                            currentMilestoneValue, nextSql);
                 } else {
                     return false;
                 }
