@@ -80,7 +80,6 @@ public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
         currentTableIndex = currentDataBase.getTableIndex().get(0);
         this.originSql = addMilestoneInit(originSql, milestoneName);
         crepeQuery = new CrepeQuery<>();
-        crepeQuery.setDataSource(currentDataBase.getDataSource());
         crepeQuery.setObjectMapper(objectMapper);
         checkSelect(originSql);
     }
@@ -106,6 +105,7 @@ public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
     public boolean hasNext() {
 
         t = null;
+        crepeQuery.setDataSource(currentDataBase.getDataSource());
         //当前表的下一条SQL
         String nextSql = nextSql(this.originSql, currentTableIndex);
         //设置进去query对象

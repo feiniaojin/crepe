@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Primary;
 public class DataSourceConfig {
 
     @Bean(name = "dataSourceDb0")
-//    @Primary
+    @Primary
     @ConfigurationProperties(prefix = "hikari.db0")
     public HikariDataSource dataSourceDb0() {
         return new HikariDataSource();

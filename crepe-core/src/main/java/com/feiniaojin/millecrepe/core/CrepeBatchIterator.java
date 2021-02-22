@@ -78,7 +78,6 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
         currentTableIndex = currentDataBase.getTableIndex().get(0);
         this.originSql = addMilestoneInit(originSql, milestoneName);
         crepeQuery = new CrepeQuery<>();
-        crepeQuery.setDataSource(currentDataBase.getDataSource());
         crepeQuery.setObjectMapper(objectMapper);
         checkSelect(originSql);
     }
@@ -103,6 +102,7 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
     @Override
     public boolean hasNext() {
 
+        crepeQuery.setDataSource(currentDataBase.getDataSource());
         list = null;
         //当前表的下一条SQL
         String nextSql = nextSql(this.originSql, currentTableIndex);

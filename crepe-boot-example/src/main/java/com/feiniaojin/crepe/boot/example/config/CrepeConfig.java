@@ -44,7 +44,7 @@ public class CrepeConfig {
                 .withName("db0")
                 .build();
     }
-    @Bean
+    @Bean(name = "logicDataBaseDb1")
     public LogicDataBase logicDataBaseDb1() {
         return LogicDataBase.Builder.aLogicDataBase()
                 .withDataSource(dataSourceDb1)
@@ -55,7 +55,7 @@ public class CrepeConfig {
                 .withName("db1")
                 .build();
     }
-    @Bean
+    @Bean(name = "logicDataBaseDb2")
     public LogicDataBase logicDataBaseDb2() {
         return LogicDataBase.Builder.aLogicDataBase()
                 .withDataSource(dataSourceDb2)
@@ -66,7 +66,7 @@ public class CrepeConfig {
                 .withName("db2")
                 .build();
     }
-    @Bean
+    @Bean(name = "logicDataBaseDb3")
     public LogicDataBase logicDataBaseDb3() {
         return LogicDataBase.Builder.aLogicDataBase()
                 .withDataSource(dataSourceDb3)
@@ -77,7 +77,7 @@ public class CrepeConfig {
                 .withName("db3")
                 .build();
     }
-    @Bean
+    @Bean(name = "logicDataBaseDb4")
     public LogicDataBase logicDataBaseDb4() {
         return LogicDataBase.Builder.aLogicDataBase()
                 .withDataSource(dataSourceDb4)
@@ -88,7 +88,7 @@ public class CrepeConfig {
                 .withName("db4")
                 .build();
     }
-    @Bean
+    @Bean(name = "logicDataBaseDb5")
     public LogicDataBase logicDataBaseDb5() {
         return LogicDataBase.Builder.aLogicDataBase()
                 .withDataSource(dataSourceDb5)
@@ -100,21 +100,26 @@ public class CrepeConfig {
                 .build();
     }
 
-    @Bean
-    public LogicDataLayer logicDataLayer() {
+    @Bean(name = "logicDataLayer")
+    public LogicDataLayer logicDataLayer(LogicDataBase logicDataBaseDb0,
+                                         LogicDataBase logicDataBaseDb1,
+                                         LogicDataBase logicDataBaseDb2,
+                                         LogicDataBase logicDataBaseDb3,
+                                         LogicDataBase logicDataBaseDb4,
+                                         LogicDataBase logicDataBaseDb5) {
         return LogicDataLayer.Builder.aLogicDataLayer()
-                .withLogicDataBases(Arrays.asList(logicDataBaseDb0(),
-                        logicDataBaseDb1(),
-                        logicDataBaseDb2(),
-                        logicDataBaseDb3(),
-                        logicDataBaseDb4(),
-                        logicDataBaseDb5()))
+                .withLogicDataBases(Arrays.asList(logicDataBaseDb0,
+                        logicDataBaseDb1,
+                        logicDataBaseDb2,
+                        logicDataBaseDb3,
+                        logicDataBaseDb4,
+                        logicDataBaseDb5))
                 .build();
     }
 
     @Bean
-    public Crepe<Item> crepe() {
-        return Crepe.Builder.aCrepe().withLogicDataLayer(logicDataLayer())
+    public Crepe<Item> crepe(LogicDataLayer logicDataLayer) {
+        return Crepe.Builder.aCrepe().withLogicDataLayer(logicDataLayer)
                 .withMilestoneName("id")
                 .withMilestoneInitValue("0")
                 .withOriginSql("select * from t_item_ limit 1000")
