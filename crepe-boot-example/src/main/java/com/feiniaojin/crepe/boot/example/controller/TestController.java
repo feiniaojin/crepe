@@ -79,20 +79,32 @@ public class TestController {
     @GetMapping("/test3")
     private Object test3() {
         List<Object> list = new ArrayList<>();
+
+
         for (Object object : crepe.open()) {
-//            logger.debug("返回的item=" + object);
-            list.add(object);
+            System.out.println(object);
         }
+
+        for (List<Item> items : crepe.openBatch()) {
+            System.out.println(items);
+        }
+
+//        list.add(object);
         return list;
     }
 
     @GetMapping("/test5")
     private Object test5() {
         List<Object> list = new ArrayList<>();
-        for (List<Item> object : crepe.openBatch()) {
-//            logger.debug("返回的item=" + object);
-            list.addAll(object);
+
+
+        for (List<Item> items : crepe.openBatch()) {
+            System.out.println(items);
         }
+
+
+
+
         return list;
     }
 
