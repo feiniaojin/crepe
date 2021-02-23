@@ -102,8 +102,8 @@ public class CrepeBatchIterator<T> implements Iterator<List<T>>, Iterable<List<T
     @Override
     public boolean hasNext() {
 
-        crepeQuery.setDataSource(currentDataBase.getDataSource());
         list = null;
+        crepeQuery.setDataSource(currentDataBase.getDataSource());
         //当前表的下一条SQL
         String nextSql = nextSql(this.originSql, currentTableIndex);
         //设置进去query对象

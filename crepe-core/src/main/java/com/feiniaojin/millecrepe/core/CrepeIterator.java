@@ -55,10 +55,10 @@ public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
 
     private T t = null;
 
-    private ObjectMapper objectMapper;
+    private ObjectMapper<T> objectMapper;
 
     private CrepeIterator(String originSql, LogicDataLayer logicDataLayer,
-                          ObjectMapper objectMapper,
+                          ObjectMapper<T> objectMapper,
                           String milestoneName,
                           Object milestoneInitValue) {
         this.logicDataLayer = logicDataLayer;
@@ -73,7 +73,7 @@ public class CrepeIterator<T> implements Iterator<T>, Iterable<T> {
 
     private void init(String originSql,
                       LogicDataLayer logicDataLayer,
-                      ObjectMapper objectMapper,
+                      ObjectMapper<T> objectMapper,
                       String milestoneName,
                       Object milestoneInitValue) {
         currentDataBase = logicDataLayer.getLogicDataBases().get(0);
